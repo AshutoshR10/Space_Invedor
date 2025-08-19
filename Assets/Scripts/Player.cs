@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
@@ -10,15 +11,27 @@ public class Player : MonoBehaviour
     public float fireRate = 0.5f; // Time in seconds between each shot
     private float nextFireTime = 0f; // Tracks the next allowed fire time
 
-    private void Update()
+    private Rigidbody2D rb;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    public void Update()
     {
         Vector3 position = transform.position;
 
         // Update the position of the player based on the input
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
-            position.x -= speed * Time.deltaTime;
-        } else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-            position.x += speed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            MoveLeft();
+            //position.x -= speed * Time.deltaTime;
+        }
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            MoveRight();
+            //position.x += speed * Time.deltaTime;
         }
 
         // Clamp the position of the character so they do not go out of bounds
@@ -42,6 +55,19 @@ public class Player : MonoBehaviour
         //}
     }
 
+
+
+    public void MoveLeft()
+    {
+        Vector2 movement = Vector2.left * speed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + movement);
+    }
+
+    public void MoveRight()
+    {
+        Vector2 movement = Vector2.right * speed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + movement);
+    }
     void FireLaser()
     {
         // Instantiate the laser at the current position
@@ -51,7 +77,8 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Missile") ||
-            other.gameObject.layer == LayerMask.NameToLayer("Invader")) {
+            other.gameObject.layer == LayerMask.NameToLayer("Invader"))
+        {
             GameManager.Instance.OnPlayerKilled(this);
         }
     }

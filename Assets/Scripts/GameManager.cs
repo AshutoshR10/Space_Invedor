@@ -16,10 +16,10 @@ public class GameManager : MonoBehaviour
     // Existing UIs – note that gameOverUI is still used when lives reach 0.
     [SerializeField] private TextMeshProUGUI raiseHandPromptText;
 
-    [SerializeField] private GameObject raiseHandPanel;
+    [SerializeField] public GameObject raiseHandPanel;
     private bool waitingForHand = false;
 
-    [SerializeField] private GameObject gameOverUI;
+    [SerializeField] public GameObject gameOverUI;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text hiscoreText;
     [SerializeField] private Text livesText;
