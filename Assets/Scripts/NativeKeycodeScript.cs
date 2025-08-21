@@ -67,6 +67,7 @@ public class NativeKeycodeScript : MonoBehaviour
                 break;
             case "4":
                 GameManager.Instance.raiseHandPanel.SetActive(false); //Raise your healthy hand to begin! gesture to close panel 
+                GameManager.Instance.StartLevel();
                 break;
         }
 

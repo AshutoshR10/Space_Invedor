@@ -25,12 +25,12 @@ public class Player : MonoBehaviour
         // Update the position of the player based on the input
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            MoveLeft();
+            //MoveLeft();
             //position.x -= speed * Time.deltaTime;
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            MoveRight();
+            //MoveRight();
             //position.x += speed * Time.deltaTime;
         }
 

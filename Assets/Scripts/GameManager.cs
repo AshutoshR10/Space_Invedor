@@ -317,7 +317,7 @@ public class GameManager : MonoBehaviour
     }
 
   
-    private void StartLevel()
+    public void StartLevel()
     {
         if (startPanel != null)
             startPanel.SetActive(false);
