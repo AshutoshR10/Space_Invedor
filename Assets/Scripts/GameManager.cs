@@ -254,7 +254,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void NewGame()
+    public void NewGame()
     {
         // bool firstGame = PlayerPrefs.GetInt("HasPlayedBefore", 0) == 0;
 
